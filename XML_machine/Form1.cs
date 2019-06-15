@@ -6,31 +6,34 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml; //required to read XMLs
+using System.Xml; //required to read XMLs <-- too obvious to comment (don't add comments like that)
 using System.Windows.Forms;
-using System.IO; //required to save text to file
+using System.IO; //required to save text to file <-- too obvious to comment (don't add comments like that)
 
 namespace XML_machine
 {
+
+
     public partial class Form1 : Form
     {
-        OpenFileDialog opener = new OpenFileDialog(); //create "open file" object
+        OpenFileDialog opener = new OpenFileDialog(); //create "open file" object <-- too obvious to comment (don't add comments like that)
 
         public Form1()
         {
             InitializeComponent();
-            this.Text = "XML Machine"; //change app title
-            File.WriteAllText("log.txt", ""); //clear log files
+            this.Text = "XML Machine"; //change app title  <-- too obvious to comment (don't add comments like that) -- it applies to other comments as well.
+
+            File.WriteAllText("log.txt", ""); //clear log files <-- sorry, not a good idea for managing logs
             File.WriteAllText("error_log.txt", "");
         }
 
-        private void Display(string to_display) //alias to write things in console
+        private void Display(string to_display) //alias to write things in console  <-- the method name should be named to something that is obvious enough without the comment
         {
             my_console.Text += to_display;
             File.AppendAllText("log.txt", to_display);
         }
 
-        private void DisplayError(string to_display) //alias to display errors
+        private void DisplayError(string to_display) //alias to display errors <-- the method name should be named to something that is obvious enough without the comment
         {
             my_console.Text += to_display;
             File.AppendAllText("error_log.txt", to_display);
@@ -38,7 +41,7 @@ namespace XML_machine
 
         }
 
-        private void Button1_Click(object sender, EventArgs e) //browse button clicked
+        private void Button1_Click(object sender, EventArgs e) //browse button clicked 
         {
             if (opener.ShowDialog() == DialogResult.OK) //display browse window, and if success then:
             {
@@ -54,7 +57,8 @@ namespace XML_machine
             }
         }
 
-        private void Button2_Click(object sender, EventArgs e) //calculate button clicked
+        private void Button2_Click(object sender, EventArgs e) //calculate button clicked - <-- this method is too long (it contains too much processing, too many 'logical operations')
+        //as a rule of thumb, if a method is too long to fit on screen, split it into smaller methods
         {
             Display("Opening file:\r\n" + file_path.Text + "\r\n"); //display msg
             int value_elements = 0; //counter to count number of "value" elements
@@ -83,20 +87,24 @@ namespace XML_machine
                 }
                 catch //error detected
                 {
+                    //it makes sense to get some details on the error - what went wrong? Invalid attribute value? Which attribute? No attribute? 
                     DisplayError("Error while processing XML file.\r\n");
                     return; //stop this function
                 }
             }
 
             Display("----------\r\nCalculating...\r\n");
+            //instead of j, k etc you can use better names for the iterator indexing variables (something more obvious for the reader)
             for (int j = 0; j < value_elements; j++) //calculate as many times as there are "value" elements
             {
                 int result = imported_b[j]; //reset result
+
+                //use string interpolation rather than concatenation. It reads better:)
                 Display("Value (" + j + ")\r\n\tA = " + imported_a[j] +", B = "+ imported_b[j] + ", Operation = " + operation_selector.Text +", Number of operations = "+value_elements+"\r\n"); //display things
 
                 switch (operation_selector.Text)
                 {
-                    case "Multiply":
+                    case "Multiply": 
                         try
                         {
                             for (int k = 0; k < value_elements; k++)
@@ -165,7 +173,7 @@ namespace XML_machine
         private void Clear_button_Click(object sender, EventArgs e) //clear console
         {
             my_console.Text = "";
-            Display("Console screen has been cleared.\r\n");
+            Display("Console screen has been cleared.\r\n"); //oh, really??
         }
     }
 }
