@@ -38,6 +38,8 @@
             this.calculate_button = new System.Windows.Forms.Button();
             this.my_console = new System.Windows.Forms.TextBox();
             this.clear_button = new System.Windows.Forms.Button();
+            this.title_label = new System.Windows.Forms.Label();
+            this.progress_bar = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -99,7 +101,6 @@
             // 
             this.counter_box.Location = new System.Drawing.Point(472, 95);
             this.counter_box.Name = "counter_box";
-            this.counter_box.ReadOnly = true;
             this.counter_box.Size = new System.Drawing.Size(100, 20);
             this.counter_box.TabIndex = 5;
             this.counter_box.TextChanged += new System.EventHandler(this.Enable_Second_Button);
@@ -135,11 +136,32 @@
             this.clear_button.UseVisualStyleBackColor = true;
             this.clear_button.Click += new System.EventHandler(this.Clear_button_Click);
             // 
+            // title_label
+            // 
+            this.title_label.AutoSize = true;
+            this.title_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.title_label.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.title_label.Location = new System.Drawing.Point(412, 9);
+            this.title_label.Name = "title_label";
+            this.title_label.Size = new System.Drawing.Size(160, 20);
+            this.title_label.TabIndex = 9;
+            this.title_label.Text = "XML Machine v.1.1";
+            // 
+            // progress_bar
+            // 
+            this.progress_bar.Location = new System.Drawing.Point(21, 454);
+            this.progress_bar.Name = "progress_bar";
+            this.progress_bar.Size = new System.Drawing.Size(551, 21);
+            this.progress_bar.TabIndex = 10;
+            this.progress_bar.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(595, 450);
+            this.ClientSize = new System.Drawing.Size(595, 489);
+            this.Controls.Add(this.progress_bar);
+            this.Controls.Add(this.title_label);
             this.Controls.Add(this.clear_button);
             this.Controls.Add(this.my_console);
             this.Controls.Add(this.calculate_button);
@@ -168,6 +190,8 @@
         private System.Windows.Forms.Button calculate_button;
         private System.Windows.Forms.TextBox my_console;
         private System.Windows.Forms.Button clear_button;
+        private System.Windows.Forms.Label title_label;
+        private System.Windows.Forms.ProgressBar progress_bar;
     }
 }
 
