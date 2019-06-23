@@ -77,7 +77,7 @@ namespace XML_machine
         List<int> imported_a = new List<int>(); //list of A values
         List<int> imported_b = new List<int>(); //list of B values
 
-        private void Open_and_read() //as the name suggest, this method is to open and read file. It also launches "calculate" method.
+        bool Open_and_read() //as the name suggest, this method is to open and read file. It also launches "calculate" method.
         {
             DisplayConsole($"Opening file:\r\n{file_path.Text}\r\n"); //display msg
             
@@ -88,7 +88,7 @@ namespace XML_machine
             catch //error of parsing counter_box int integer. Probably not a number.
             {
                 DisplayError("Error while setting up operations counter. Please input valid integer number.\r\n");
-                return; //stop this function
+                return false; ; //stop this function
             }
             DisplayConsole("Opening complete.\r\n");
 
@@ -114,7 +114,7 @@ namespace XML_machine
                 {
                     //[B]it makes sense to get some details on the error - what went wrong? Invalid attribute value? Which attribute? No attribute? 
                     DisplayError("Error while reading values from XML file. Please provide valid XML file with valid 'a' and 'b' parameters.\r\n");
-                    return; //stop this function
+                    return false; ; //stop this function
                 }
             }
             DisplayConsole("Number of Value elements detected: " + no_of_values + "\r\n");
@@ -124,7 +124,7 @@ namespace XML_machine
             progress_bar.Maximum = no_of_values * no_of_operations;
             progress_bar.Value = 0;
             progress_bar.Step = 1;
-            Calculate();
+            return true;
         }
              
         private void Calculate()
@@ -238,7 +238,10 @@ namespace XML_machine
             imported_a = new List<int>(); //reset list of A values
             imported_b = new List<int>(); //reset list of B values
 
-            Open_and_read();
+            if(Open_and_read())
+            {
+                Calculate();
+            }
         }
     }
 }
